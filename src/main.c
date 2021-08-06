@@ -88,7 +88,7 @@ int main(void)
   *  SCB->VTOR register.  
   *  E.g.  SCB->VTOR = 0x20000000;  
   */
-	// USE system_stm32f10x.c to change system clock (SYSCLK_FREQ_72MHz)
+	/* USE system_stm32f10x.c to change system clock (SYSCLK_FREQ_72MHz)*/
 
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC | RCC_APB2Periph_USART1,ENABLE);
 
@@ -140,7 +140,6 @@ int main(void)
 	  printstring("hello world\n\r");
 
 	  for (int i = 0; i < 500000; i++); // arbitrary delay
-
 
 	  GPIOC ->ODR |= (1UL<<13);
 	  for (int i = 0; i < 500000; i++); // arbitrary delay
