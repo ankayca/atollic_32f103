@@ -89,7 +89,7 @@ int main(void)
   *  E.g.  SCB->VTOR = 0x20000000;  
   */
 	/* USE system_stm32f10x.c to change system clock (SYSCLK_FREQ_72MHz)*/
-
+	SystemInit();
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC | RCC_APB2Periph_USART1,ENABLE);
 
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);
