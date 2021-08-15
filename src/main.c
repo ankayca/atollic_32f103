@@ -53,7 +53,7 @@ SOFTWARE.
 **===========================================================================
 */
 
-// git token : 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
+
 int main(void)
 {
     /* USART configuration structure for USART1 */
