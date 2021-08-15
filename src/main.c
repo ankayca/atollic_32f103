@@ -30,15 +30,12 @@ SOFTWARE.
 /* Includes */
 #include <stddef.h>
 #include "stm32f10x.h"
-#include "stm32f10x_rcc.h"
+#include "AC_UART.h"
 
 
 
 /* Private typedef */
 /* Private define  */
-
-  #define MESSAGE5   " program built with "
-  #define MESSAGE6   " Atollic TrueSTUDIO "
 
 
 /* Private macro */
@@ -55,28 +52,12 @@ SOFTWARE.
 **
 **===========================================================================
 */
-void UART1_Transmitter(unsigned char data)
-{
 
-    while((USART1->SR & (1<<7)) == 0);
-    USART1->DR = data;
-
-}
-
-void printstring(char *str)
-{
-  while(*str)
-	{
-
-		UART1_Transmitter(*(str++));
-
-	}
-}
 
 int main(void)
 {
     /* USART configuration structure for USART1 */
-    USART_InitTypeDef usart1_init_struct;
+
 	GPIO_InitTypeDef gpio_init;
 
   /**
@@ -90,9 +71,9 @@ int main(void)
   */
 	/* USE system_stm32f10x.c to change system clock (SYSCLK_FREQ_72MHz)*/
 	SystemInit();
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC | RCC_APB2Periph_USART1,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC ,ENABLE);
 
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);
+
 
   /* TODO - Add your application code here */
 	gpio_init.GPIO_Mode = GPIO_Mode_Out_OD;
@@ -102,42 +83,13 @@ int main(void)
 
 	/* USART CONFIGURATIONS */
 
-    /* Bit configuration structure for GPIOA PIN9 and PIN10 */
-
-
-    /* Enalbe clock for USART1, AFIO and GPIOA */
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO |
-                           RCC_APB2Periph_GPIOA, ENABLE);
-
-    /* GPIOA PIN9 alternative function Tx */
-    gpio_init.GPIO_Pin = GPIO_Pin_9;
-    gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-    GPIO_Init(GPIOA, &gpio_init);
-    /* GPIOA PIN9 alternative function Rx */
-    gpio_init.GPIO_Pin = GPIO_Pin_10;
-    gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-    GPIO_Init(GPIOA, &gpio_init);
 
     /* Enable USART1 */
-    USART_Cmd(USART1, ENABLE);
-    /* Baud rate 9600, 8-bit data, One stop bit
-     * No parity, Do both Rx and Tx, No HW flow control
-     */
-    usart1_init_struct.USART_BaudRate = 9600;
-    usart1_init_struct.USART_WordLength = USART_WordLength_8b;
-    usart1_init_struct.USART_StopBits = USART_StopBits_1;
-    usart1_init_struct.USART_Parity = USART_Parity_No ;
-    usart1_init_struct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
-    usart1_init_struct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-    /* Configure USART1 */
-    USART_Init(USART1, &usart1_init_struct);
-
+    AC_UARTInit();
   /* Infinite loop */
   while (1)
   {
-	  printstring("hello world\n\r");
+	  AC_printstring("hello world\n\r");
 
 	  for (int i = 0; i < 500000; i++); // arbitrary delay
 
