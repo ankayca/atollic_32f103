@@ -1846,15 +1846,15 @@ OUTPUT(test_32f103_clock.elf elf32-littlearm)
  .debug_ranges  0x00000000000002f0       0x50 src/stm32f1xx_it.o
  .debug_ranges  0x0000000000000340       0x28 src/system_stm32f10x.o
 
-.debug_line     0x0000000000000000     0x1666
+.debug_line     0x0000000000000000     0x1668
  .debug_line    0x0000000000000000      0x3d3 Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.o
  .debug_line    0x00000000000003d3      0x4ce Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.o
  .debug_line    0x00000000000008a1      0x4b5 Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.o
- .debug_line    0x0000000000000d56      0x220 src/AC_UART.o
- .debug_line    0x0000000000000f76      0x226 src/main.o
- .debug_line    0x000000000000119c       0x7c src/startup_stm32f10x_md.o
- .debug_line    0x0000000000001218      0x21a src/stm32f1xx_it.o
- .debug_line    0x0000000000001432      0x234 src/system_stm32f10x.o
+ .debug_line    0x0000000000000d56      0x222 src/AC_UART.o
+ .debug_line    0x0000000000000f78      0x226 src/main.o
+ .debug_line    0x000000000000119e       0x7c src/startup_stm32f10x_md.o
+ .debug_line    0x000000000000121a      0x21a src/stm32f1xx_it.o
+ .debug_line    0x0000000000001434      0x234 src/system_stm32f10x.o
 
 .debug_str      0x0000000000000000     0x1034
  .debug_str     0x0000000000000000      0x560 Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.o
